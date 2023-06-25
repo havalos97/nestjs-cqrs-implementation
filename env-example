@@ -1,0 +1,1 @@
+MONGODB_URI=mongodb://pets-api-database:27017/nestjs_cqrs

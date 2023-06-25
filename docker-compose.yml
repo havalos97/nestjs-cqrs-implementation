@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  pets-api:
+    container_name: pets-api
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    command: yarn start:dev
+    env_file:
+      - .env
+    depends_on:
+      - pets-api-database
+    networks:
+      - webnet
+
+  pets-api-database:
+    image: mongo:5.0.0
+    container_name: pets-api-database
+    networks:
+      - webnet
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  webnet:
