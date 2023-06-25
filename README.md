@@ -14,3 +14,6 @@ $ docker-compose build
 # development
 $ docker-compose up
 ```
+
+# Test the API
+[nestjs-cqrs-implementation.postman.zip](https://github.com/havalos97/nestjs-cqrs-implementation/files/11858957/nestjs-cqrs-implementation.postman.zip)
